@@ -23,4 +23,10 @@ public class UserController {
 	public @ResponseBody User getUser(){
 		return userRepository.findOne(1l);
 	}
+	
+	@RequestMapping(value="login")
+	public String login(){
+		System.out.println("login");
+		return "login";
+	}
 }

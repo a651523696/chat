@@ -78,8 +78,9 @@ public class ShiroFilterConfig {
 	        // 登录成功后要跳转的连接
 //	        shiroFilterFactoryBean.setSuccessUrl("/user");
 //	        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+	        
 	        Map<String,String> definition = new HashMap<String,String>();
-	        definition.put("/home", "authc");
+	        definition.put("/chatForward", "authc");
 	        shiroFilterFactoryBean.setFilterChainDefinitionMap(definition);
 	        return shiroFilterFactoryBean;
 	    }

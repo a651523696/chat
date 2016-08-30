@@ -26,6 +26,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter	{
 		@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("chatForward").setViewName("index");
+		registry.addViewController("loginForward").setViewName("login");
 	}
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
