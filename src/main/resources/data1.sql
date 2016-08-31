@@ -1,5 +1,5 @@
-insert into user values(1,'zhangsan','123456');
-insert into user values(2,'lisi','wangwu');
-insert into user values(3,'wangwu','123456');
-insert into user values(4,'wangnima','123456');
+insert into user values(1,'123456','zhangsan');
+insert into user values(2,'wangwu','lisi');
+insert into user values(3,'123456','wangwu');
+insert into user values(4,'123456','wangnima');
 

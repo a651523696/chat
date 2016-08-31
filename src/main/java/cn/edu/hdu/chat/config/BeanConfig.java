@@ -1,5 +1,7 @@
 package cn.edu.hdu.chat.config;
 
+import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,4 +15,8 @@ public class BeanConfig {
 	public ApplicationListener<BrokerAvailabilityEvent> getBrokerListener(){
 		return new BrokerListener();
 	}
+/*	@Bean
+	public ErrorAttributes  getErrorAttributes(){
+		DefaultErrorAttributes  attributes = new 	DefaultErrorAttributes();
+	}*/
 }

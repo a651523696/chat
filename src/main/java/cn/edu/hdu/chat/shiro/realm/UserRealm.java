@@ -5,14 +5,15 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.edu.hdu.chat.model.User;
 import cn.edu.hdu.chat.repository.UserRepository;
-
 public class UserRealm extends AuthorizingRealm {
 	@Autowired
 	private UserRepository userRepository;
@@ -24,10 +25,13 @@ public class UserRealm extends AuthorizingRealm {
 		String username = (String)token.getPrincipal();
 		System.out.println(username);
 		String password = new String((char[])token.getCredentials());
-		
+		System.out.println("userRepository:"+userRepository);
 		User u = userRepository.findByUsername(username);
-        if(!"123".equals(password)) {  
-            throw new IncorrectCredentialsException(); //如果密码错误  
+		if(u == null){
+			throw new UnknownAccountException("账号不存在");
+		}
+        if(!password.equals(u.getPassword())) {  
+            throw new IncorrectCredentialsException("账号或密码错误"); //如果密码错误  
         }  
         return new SimpleAuthenticationInfo(username,password,getName());
 	}

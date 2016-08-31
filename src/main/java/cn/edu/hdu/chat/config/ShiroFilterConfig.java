@@ -39,10 +39,10 @@ public class ShiroFilterConfig {
 
 	//安全管理器
 	@Bean(name="securityManager")
-	public SecurityManager getSecurityManager(EhCacheManager cacheManager){
+	public SecurityManager getSecurityManager(EhCacheManager cacheManager,UserRealm realm){
 			DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 			securityManager.setCacheManager(cacheManager);
-			securityManager.setRealm(new UserRealm());
+			securityManager.setRealm(realm);
 			return securityManager;
 	}
 	//缓存管理器
@@ -96,5 +96,9 @@ public class ShiroFilterConfig {
 	 public FormAuthenticationFilter getFormFilter(){
 		 FormAuthenticationFilter filter = new FormAuthenticationFilter();
 		return filter;
+	 }
+	 @Bean
+	 public UserRealm getUserRealm(){
+		 return new UserRealm();
 	 }
 }
