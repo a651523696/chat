@@ -15,8 +15,5 @@ public class BeanConfig {
 	public ApplicationListener<BrokerAvailabilityEvent> getBrokerListener(){
 		return new BrokerListener();
 	}
-/*	@Bean
-	public ErrorAttributes  getErrorAttributes(){
-		DefaultErrorAttributes  attributes = new 	DefaultErrorAttributes();
-	}*/
+
 }
