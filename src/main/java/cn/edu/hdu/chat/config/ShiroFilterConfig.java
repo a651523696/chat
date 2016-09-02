@@ -3,6 +3,7 @@ package cn.edu.hdu.chat.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -11,15 +12,22 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import cn.edu.hdu.chat.properties.CredentialsMatcherProperties;
 import cn.edu.hdu.chat.shiro.realm.UserRealm;
 
 @Configuration
+@EnableConfigurationProperties(CredentialsMatcherProperties.class)
 public class ShiroFilterConfig {
+	@Autowired
+	private CredentialsMatcherProperties matcherProperties;
 	@Bean(name="lifecycleBeanPostProcessor")
 	public LifecycleBeanPostProcessor getLifeCycleBeanPostProcessor(){
 		return new LifecycleBeanPostProcessor();
@@ -81,6 +89,7 @@ public class ShiroFilterConfig {
 	        
 	        Map<String,String> definition = new HashMap<String,String>();
 	        definition.put("/chatForward", "authc");
+	        definition.put("/login", "anon");
 	        shiroFilterFactoryBean.setFilterChainDefinitionMap(definition);
 	        return shiroFilterFactoryBean;
 	    }
@@ -99,6 +108,13 @@ public class ShiroFilterConfig {
 	 }
 	 @Bean
 	 public UserRealm getUserRealm(){
-		 return new UserRealm();
+		 UserRealm realm = new UserRealm();
+		 HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+		 System.out.println("--------------------------"+this.matcherProperties.getHashIterations());
+		 System.out.println(this.matcherProperties.getHashAlgorithmName());
+//		 matcher.setHashAlgorithmName("md5");
+//		 matcher.setHashIterations(5);
+		 realm.setCredentialsMatcher(matcher);
+		 return realm;
 	 }
 }

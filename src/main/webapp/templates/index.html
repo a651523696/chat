@@ -329,6 +329,9 @@ body {
 					stompClient.subscribe("/topic/connect",function(data){
 						console.log('subscribe connect successfully');
 					});
+					stompClient.subscribe("/topic/chat",function(event){
+						console.log(event.data);
+					})
 			});
 			stompClient.ws.onclose = function() {
 				alert('close');

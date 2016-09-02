@@ -1,0 +1,20 @@
+{
+  "groups": [{
+    "name": "shiro.credentialsMatcher",
+    "type": "cn.edu.hdu.chat.properties.CredentialsMatcherProperties",
+    "sourceType": "cn.edu.hdu.chat.properties.CredentialsMatcherProperties"
+  }],
+  "properties": [
+    {
+      "name": "shiro.credentialsMatcher.hash-algorithm-name",
+      "type": "java.lang.String",
+      "sourceType": "cn.edu.hdu.chat.properties.CredentialsMatcherProperties"
+    },
+    {
+      "name": "shiro.credentialsMatcher.hash-iterations",
+      "type": "java.lang.Integer",
+      "sourceType": "cn.edu.hdu.chat.properties.CredentialsMatcherProperties"
+    }
+  ],
+  "hints": []
+}
