@@ -3,7 +3,6 @@ package cn.edu.hdu.chat.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ConfigurationProperties(prefix="shiro.credentialsMatcher")
 public class CredentialsMatcherProperties {
 	
