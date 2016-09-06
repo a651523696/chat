@@ -12,11 +12,13 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.edu.hdu.chat.model.ChatMessage;
 import cn.edu.hdu.chat.model.User;
 import cn.edu.hdu.chat.properties.UrlProperties;
 import cn.edu.hdu.chat.repository.UserRepository;
@@ -61,5 +63,9 @@ public class UserController {
 	@SubscribeMapping("/connect")
 	public String connect(){
 		return "ss";
+	}
+	@MessageMapping("/chat")
+	public ChatMessage receiveMessage(ChatMessage message){
+		return message;
 	}
 }
