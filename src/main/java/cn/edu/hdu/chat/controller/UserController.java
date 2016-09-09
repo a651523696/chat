@@ -7,16 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.hdu.chat.model.User;
+import cn.edu.hdu.chat.properties.CredentialsMatcherProperties;
 import cn.edu.hdu.chat.repository.UserRepository;
 
 @Controller	
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private CredentialsMatcherProperties properties;
 	@RequestMapping("hello")
 	
 	public String index(){
-		return "index";
+		System.out.println(properties.getHashAlgorithmName());
+		return "hello";
 	}
 	
 	

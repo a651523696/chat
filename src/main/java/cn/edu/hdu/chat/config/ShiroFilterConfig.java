@@ -14,16 +14,17 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import cn.edu.hdu.chat.properties.CredentialsMatcherProperties;
 import cn.edu.hdu.chat.shiro.realm.UserRealm;
 
 @Configuration
+@Component
 @EnableConfigurationProperties(CredentialsMatcherProperties.class)
 public class ShiroFilterConfig {
 	@Autowired
@@ -110,10 +111,11 @@ public class ShiroFilterConfig {
 	 public UserRealm getUserRealm(){
 		 UserRealm realm = new UserRealm();
 		 HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
-		 System.out.println("--------------------------"+this.matcherProperties.getHashIterations());
-		 System.out.println(this.matcherProperties.getHashAlgorithmName());
-//		 matcher.setHashAlgorithmName("md5");
-//		 matcher.setHashIterations(5);
+		 System.out.println(this.matcherProperties);
+//		 System.out.println("--------------------------"+this.matcherProperties.getHashIterations());
+//		 System.out.println(this.matcherProperties.getHashAlgorithmName());
+////		 matcher.setHashAlgorithmName("md5");
+////		 matcher.setHashIterations(5);
 		 realm.setCredentialsMatcher(matcher);
 		 return realm;
 	 }

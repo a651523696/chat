@@ -1,5 +1,5 @@
-package cn.edu.hdu.chat;
 
+package cn.edu.hdu.chat;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
