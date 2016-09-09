@@ -7,7 +7,7 @@ public class BrokerListener implements ApplicationListener<BrokerAvailabilityEve
 
 	@Override
 	public void onApplicationEvent(BrokerAvailabilityEvent event) {
-		System.out.println("*****broker status:"+event.isBrokerAvailable());
+		System.out.println("chat**broker status:"+event.isBrokerAvailable());
 	}
 
 }

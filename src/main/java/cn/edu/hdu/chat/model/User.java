@@ -1,5 +1,7 @@
 package cn.edu.hdu.chat.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +22,13 @@ public class User {
 		}
 
 		private String password;
-
+		private Date registTime;
+		public Date getRegistTime() {
+			return registTime;
+		}
+		public void setRegistTime(Date registTime) {
+			this.registTime = registTime;
+		}
 		public Long getId() {
 			return id;
 		}
