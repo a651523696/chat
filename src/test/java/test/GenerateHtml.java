@@ -16,7 +16,7 @@ public class GenerateHtml {
 		String line = null;
 		while((line = br.readLine()) != null){
 			line = line.trim().replaceAll("\"", "\\\\\"");
-			line = "+\""+line+"\"+";
+			line = "\""+line+"\"+";
 			bw.write(line);
 			bw.newLine();
 		}
