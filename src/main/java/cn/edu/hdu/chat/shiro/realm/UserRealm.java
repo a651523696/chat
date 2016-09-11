@@ -3,15 +3,16 @@ package cn.edu.hdu.chat.shiro.realm;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,6 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		//使用user的registTime作为盐  来加强密码的安全性,当然格式得与生成时一致 
 		String salt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(u.getRegistTime());
-		System.out.println(salt);
 		//如果使用了credentialsMatcher,就返回数据库中存储的密码与salt,shiro会自动根据HashedCredentialsMatcher来匹配当前密码
         return new SimpleAuthenticationInfo(u,u.getPassword(),ByteSource.Util.bytes(salt),getName());
 	}

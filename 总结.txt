@@ -1,13 +1,8 @@
-propertiesµÄ¶ÁÈ¡¼¸ÖÖ·½Ê½
+propertiesçš„è¯»å–å‡ ç§æ–¹å¼
 
 
-spring websocketµÄÊ¹ÓÃ   
+spring websocketçš„ä½¿ç”¨   
 
 
-jpaµÄÅäÖÃ 
-
-
-
-
-
+jpaçš„é…ç½® 
 

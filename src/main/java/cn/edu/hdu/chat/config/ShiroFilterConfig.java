@@ -90,7 +90,7 @@ public class ShiroFilterConfig {
 	        Map<String,Filter> filters = new HashMap<String,Filter>();
 	        filters.put("authc",getFormFilter());
 	        Map<String,String> definition = new HashMap<String,String>();
-	        definition.put("/chatForward", "authc");
+	        definition.put("/chatroom", "authc");
 	        definition.put("/login", "anon");
 	        shiroFilterFactoryBean.setFilterChainDefinitionMap(definition);
 	        shiroFilterFactoryBean.setFilters(filters);

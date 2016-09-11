@@ -1,12 +1,9 @@
-"<div class=\"answer left\">"+
+"<div class=\"user\">"+
 "<div class=\"avatar\">"+
-"<img src=\"http://bootdey.com/img/Content/avatar/avatar1.png\""+
+"<img src=\"http://bootdey.com/img/Content/avatar/avatar6.png\""+
 "alt=\"User name\" />"+
-"<div class=\"status offline\"></div>"+
+"<div class=\"status off\"></div>"+
 "</div>"+
-"<div class=\"name\">Alexander Herthic</div>"+
-"<div class=\"text\">Lorem ipsum dolor amet, consectetur"+
-"adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing"+
-"elit Lorem ipsum dolor amet, consectetur adiping elit</div>"+
-"<div class=\"time\">5 min ago</div>"+
+"<div class=\"name\">User name</div>"+
+"<div class=\"mood\">User mood</div>"+
 "</div>"+

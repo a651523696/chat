@@ -14,6 +14,21 @@ var stompClient = null;
 				});
 				stompClient.subscribe("/topic/chat",function(event){
 					chatBoard(event.body);
+				});
+				//登录到聊天室后获取在线用户
+				stompClient.subscribe("/app/userlist",function(event){
+						var list = JSON.parse(event.body);
+						printUserlist(list);
+				});
+				//用户下线进行用户列表的删除
+				stompClient.subscribe("/topic/useroffline",function(event){
+					var userId = event.body;
+					userOffline(userId);
+				});
+				//用户上线进行用户列表的添加
+				stompClient.subscribe("/topic/useronline",function(event){
+					var user = JSON.parse(event.body);
+					userOnline(user);
 				})
 		});
 		stompClient.ws.onclose = function() {
@@ -25,6 +40,23 @@ var stompClient = null;
 		var chatMessage = JSON.parse(message);
 		printOthers(chatMessage.content);
 	}
+	function printUserlist(userlist){
+		var length = userlist.length;
+		
+		for(var i=0;i<length;i++){
+			var userhtml = getUserHtml(userlist[i]);
+			$('#chat-users').append(userhtml);
+		}
+		
+	}
+	function userOffline(userId){
+		$('#user-'+userId).remove();
+	}
+	function userOnline(user){
+		var userhtml = getUserHtml(user);
+		$('#chat-users').append(userhtml);
+	}
+	//显示他人发送来的信息(他人的信息在左边,自己在右边)
 	function printOthers(content){
 		var html = "<div class=\"answer left\">"+
 		"<div class=\"avatar\">"+
@@ -59,4 +91,19 @@ var stompClient = null;
 		} else {
 			alert('connection not established, please connect.');
 		}
+		
+		
+	}
+	function getUserHtml(user){
+		var html = "<div id=user-"+user.id+" class=\"user\">"+
+		"<div class=\"avatar\">"+
+		"<img src=\"http://bootdey.com/img/Content/avatar/avatar6.png\""+
+		"alt=\" User name\" />"+
+		"<div class=\"status off\"></div>"+
+		"</div>"+
+		"<div class=\"name\">"+user.username+"</div>"+
+		"<div class=\"mood\">User mood</div>"+
+		"</div>";
+		return html;
+
 	}

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.edu.hdu.chat.model.ChatMessage;
 import cn.edu.hdu.chat.model.User;
-import cn.edu.hdu.chat.properties.CredentialsMatcherProperties;
 import cn.edu.hdu.chat.properties.UrlProperties;
 import cn.edu.hdu.chat.repository.UserRepository;
 
@@ -29,7 +29,7 @@ import cn.edu.hdu.chat.repository.UserRepository;
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
-
+	@Autowired
 	private UrlProperties urlProperties;
 
 	@RequestMapping("hello")
@@ -59,12 +59,11 @@ public class UserController {
 			WebUtils.issueRedirect(request,response,urlProperties.getLoginForward());
 			return;
 		}
-		WebUtils.redirectToSavedRequest(request, response, "chatForward");
+		
+		
+		WebUtils.redirectToSavedRequest(request, response,urlProperties.getChatForward());
 	}
-	@SubscribeMapping("/connect")
-	public String connect(){
-		return "ss";
-	}
+	
 	@MessageMapping("/chat")
 	public ChatMessage receiveMessage(ChatMessage message){
 		return message;

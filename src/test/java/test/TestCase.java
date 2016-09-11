@@ -27,7 +27,10 @@ public  class TestCase{
 	@Test
 	public void test(){
 		List<User > list = userRepository.findAll();
-		System.out.println("password:"+list.get(0).getPassword());
+		User u = list.get(0);
+		String json = u.toString();
+		User u2 = JSON.parseObject(json, User.class);
+		System.out.println(u2);
 	}
 	
 	@Test

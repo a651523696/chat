@@ -22,10 +22,10 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 import cn.edu.hdu.chat.util.PropertiesUtil;
 
-//@Configuration
+@Configuration
 //以下两个注解表示两种配置jpa的方式,一种是从外部导入xml，一种是java config的形式，当然在spring-boot中jpa都是自动配置的，如果需要自定义一些dataSource等，需要单独配置
 // @ImportResource("classpath:spring-jpa.xml")
-//@EnableJpaRepositories(basePackages = { "cn.edu.hdu.chat.repository" })
+@EnableJpaRepositories(basePackages = { "cn.edu.hdu.chat.repository" })
 public class JpaConfig {
 	@Bean(name = "entityManagerFactory")
 	public EntityManagerFactory getEntityManagerFactoryBean(DataSource dataSource) {

@@ -1,4 +1,4 @@
-package cn.edu.hdu.chat.websocket;
+package cn.edu.hdu.chat.websocket.listener;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.messaging.simp.broker.BrokerAvailabilityEvent;

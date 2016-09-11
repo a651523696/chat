@@ -1,68 +1,32 @@
 package cn.edu.hdu.chat.config;
 
-import java.util.List;
-
 import org.jboss.logging.Logger;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.converter.MessageConverter;
-import org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolver;
-import org.springframework.messaging.handler.invocation.HandlerMethodReturnValueHandler;
-import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.session.ExpiringSession;
+import org.springframework.session.web.socket.config.annotation.AbstractSessionWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
-import org.springframework.web.socket.config.annotation.WebSocketTransportRegistration;
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
+
+/** 
+ *  extend AbstractSessionWebSocketMessageBrokerConfigurer
+ *  instead  AbstractWebSocketMessageBrokerConfigurer to config
+ *  spring session  
+ * @author hasee
+ *
+ */
+public class WebSocketConfig extends AbstractSessionWebSocketMessageBrokerConfigurer<ExpiringSession>  {
 	public static Logger logger = Logger.getLogger(WebSocketConfig.class);
 	
-	
-	
-
 	@Override
-	public void registerStompEndpoints(StompEndpointRegistry registry) {
+	public void configureStompEndpoints(StompEndpointRegistry registry) {
 		// TODO Auto-generated method stub
 		registry.addEndpoint("/chatServer");
 		registry.addEndpoint("/chatServer").withSockJS();
 	}
 
-	@Override
-	public void configureWebSocketTransport(WebSocketTransportRegistration registry) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void configureClientInboundChannel(ChannelRegistration registration) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void configureClientOutboundChannel(ChannelRegistration registration) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -74,5 +38,26 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
 		//使用spring built-in simple broker    spring自带的消息代理
 //		registry.enableSimpleBroker("/topic","/queue");
 	}
+
+
+	/*@Override
+	public void configureWebSocketTransport(WebSocketTransportRegistration registration) {
+		registration.addDecoratorFactory(new WebSocketHandlerDecoratorFactory() {
+			
+			@Override
+			public WebSocketHandler decorate(WebSocketHandler handler) {
+				// TODO Auto-generated method stub
+				return new WebSocketHandlerDecorator(new UserConnectHandler());
+			}
+		});
+		super.configureWebSocketTransport(registration);
+	}*/
+
+
+	
+
+
+
+	
 	
 }
