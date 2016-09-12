@@ -18,7 +18,7 @@ import cn.edu.hdu.chat.websocket.listener.SessionConnectHandler;
 @Configuration
 public  class BeanConfig {
 	//消息代理的状态监听器
-	@Bean
+	@Bean(initMethod="init")
 	public ApplicationListener<BrokerAvailabilityEvent> getBrokerListener(){
 		return new BrokerListener();
 	}

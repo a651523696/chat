@@ -10,7 +10,7 @@ import org.springframework.session.web.socket.events.SessionConnectEvent;
 import com.alibaba.fastjson.JSON;
 
 import cn.edu.hdu.chat.model.User;
-import cn.edu.hdu.chat.util.UserUtil;
+import cn.edu.hdu.chat.util.ChatUtils;
 
 public class SessionConnectHandler implements ApplicationListener<SessionConnectEvent>{
 	@Autowired
@@ -20,7 +20,7 @@ public class SessionConnectHandler implements ApplicationListener<SessionConnect
 			Principal principal = event.getWebSocketSession().getPrincipal();
 			User user = JSON.parseObject(principal.toString(),User.class);
 			
-			UserUtil.save(user);
+			ChatUtils.save(user);
 			template.convertAndSend("/topic/useronline", user);
 		
 	}

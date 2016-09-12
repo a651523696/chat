@@ -179,6 +179,7 @@
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 		</dependency>
+		
 	</dependencies>
 
 	<!-- Additional lines to be added here... -->

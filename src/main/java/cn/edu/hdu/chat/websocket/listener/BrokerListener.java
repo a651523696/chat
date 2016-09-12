@@ -9,5 +9,7 @@ public class BrokerListener implements ApplicationListener<BrokerAvailabilityEve
 	public void onApplicationEvent(BrokerAvailabilityEvent event) {
 		System.out.println("chat**broker status:"+event.isBrokerAvailable());
 	}
-
+	public void init(){
+		System.out.println("broker listener init");
+	}
 }

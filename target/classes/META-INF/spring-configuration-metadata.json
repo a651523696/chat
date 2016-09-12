@@ -1,6 +1,11 @@
 {
   "groups": [
     {
+      "name": "chat.message",
+      "type": "cn.edu.hdu.chat.properties.ChatProperties",
+      "sourceType": "cn.edu.hdu.chat.properties.ChatProperties"
+    },
+    {
       "name": "chat.url",
       "type": "cn.edu.hdu.chat.properties.UrlProperties",
       "sourceType": "cn.edu.hdu.chat.properties.UrlProperties"
@@ -12,6 +17,11 @@
     }
   ],
   "properties": [
+    {
+      "name": "chat.message.cache-size",
+      "type": "java.lang.Integer",
+      "sourceType": "cn.edu.hdu.chat.properties.ChatProperties"
+    },
     {
       "name": "chat.url.chat-forward",
       "type": "java.lang.String",

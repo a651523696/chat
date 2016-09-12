@@ -23,6 +23,7 @@ import cn.edu.hdu.chat.model.ChatMessage;
 import cn.edu.hdu.chat.model.User;
 import cn.edu.hdu.chat.properties.UrlProperties;
 import cn.edu.hdu.chat.repository.UserRepository;
+import cn.edu.hdu.chat.util.ChatUtils;
 
 @Controller	
 @EnableConfigurationProperties(UrlProperties.class)
@@ -66,6 +67,9 @@ public class UserController {
 	
 	@MessageMapping("/chat")
 	public ChatMessage receiveMessage(ChatMessage message){
+		System.out.println("from User:"+message.getFrom());
+		System.out.println("sendTime:"+message.getSendTime());
+		ChatUtils.storeMessage(message);
 		return message;
 	}
 }

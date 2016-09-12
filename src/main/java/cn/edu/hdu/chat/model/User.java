@@ -60,7 +60,8 @@ public class User implements Serializable {
 		}
 		@Override
 		public String toString() {
-			return "{\"id\":"+this.id+",\"password\":\""+this.password+"\",\"registTime\":\""+this.getRegistTime()+"\",\"username\":\""+this.username+"\"}";
+			return "{\"id\":"+this.id+",\"username\":\""+this.username+"\"}";
+			//\"password\":\""+this.password+"\",\"registTime\":\""+this.getRegistTime().getTime()+"\",
 		}
 		
 }
