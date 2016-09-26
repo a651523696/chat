@@ -1,1 +1,8 @@
 /target/
+.idea/
+.settings/.jsdtscope
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+chat.iml
+.settings/org.eclipse.wst.common.component

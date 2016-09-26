@@ -20,7 +20,8 @@
     {
       "name": "chat.message.cache-size",
       "type": "java.lang.Integer",
-      "sourceType": "cn.edu.hdu.chat.properties.ChatProperties"
+      "sourceType": "cn.edu.hdu.chat.properties.ChatProperties",
+      "defaultValue": 0
     },
     {
       "name": "chat.url.chat-forward",

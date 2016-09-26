@@ -1,6 +1,7 @@
 package cn.edu.hdu.chat.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,8 @@ import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +35,11 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private UrlProperties urlProperties;
-
+	@Autowired
+	private SimpMessagingTemplate template;
 	@RequestMapping("hello")
 	public @ResponseBody String index(){
-		
+		System.out.println("hello wolrd");
 		return "hello";
 	}
 	
@@ -66,10 +70,16 @@ public class UserController {
 	}
 	
 	@MessageMapping("/chat")
+	@SendToUser()
 	public ChatMessage receiveMessage(ChatMessage message){
 		System.out.println("from User:"+message.getFrom());
 		System.out.println("sendTime:"+message.getSendTime());
 		ChatUtils.storeMessage(message);
 		return message;
+	}
+	@MessageMapping("/whisper")
+	public void receivePersonalMessage(Principal principal,ChatMessage message){
+		System.out.print(message);
+		template.convertAndSendToUser(message.getTo(),"/queue/personal",message.getContent());
 	}
 }

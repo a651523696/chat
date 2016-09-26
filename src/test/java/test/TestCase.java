@@ -1,7 +1,9 @@
 package test;
 
-import java.util.List;
-
+import cn.edu.hdu.chat.config.JpaConfig;
+import cn.edu.hdu.chat.model.User;
+import cn.edu.hdu.chat.repository.UserRepository;
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +11,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.alibaba.fastjson.JSON;
-
-import cn.edu.hdu.chat.config.JpaConfig;
-import cn.edu.hdu.chat.model.User;
-import cn.edu.hdu.chat.repository.UserRepository;
+import java.util.List;
 
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(value = SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={TestCase.class,JpaConfig.class})
 @ComponentScan("cn.edu.hdu.chat.repository")
 public  class TestCase{
